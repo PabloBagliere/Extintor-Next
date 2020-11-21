@@ -5,6 +5,7 @@ module.exports = {
   testPathIgnorePatterns: ['<rootDir>[/\\\\](node_modules|.next)[/\\\\]'],
   transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(ts|tsx)$'],
   coveragePathIgnorePatterns: ['/node_modules/', 'enzyme.js'],
+  modulePaths: ['<rootDir>'],
   transform: {
     '^.+\\.(ts|tsx)$': 'babel-jest',
   },

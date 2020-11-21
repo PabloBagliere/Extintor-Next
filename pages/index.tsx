@@ -1,16 +1,17 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import NavBar from 'component/NavBar';
 
-export default function Home() {
+export default function Home(): JSX.Element {
   return (
-    <div className="bg-white dark:bg-gray-800">
+    <div className="bg-white">
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      <NavBar />
       <main>
-        <h1 className="text-gray-900 dark:text-white">Hola mundo</h1>
+        <h1 className="text-gray-900">Hola mundo</h1>
         <Link href="/login">Login</Link>
       </main>
 
