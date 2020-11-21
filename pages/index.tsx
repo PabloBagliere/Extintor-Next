@@ -10,9 +10,7 @@ export default function Home() {
       </Head>
 
       <main>
-        <h1 className="text-gray-900 dark:text-white">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+        <h1 className="text-gray-900 dark:text-white">Hola mundo</h1>
         <Link href="/login">Login</Link>
       </main>
 

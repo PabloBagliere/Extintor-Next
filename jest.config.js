@@ -1,8 +1,10 @@
 module.exports = {
   roots: ['<rootDir>'],
+  setupFilesAfterEnv: ['<rootDir>/enzyme.js'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'json', 'jsx'],
   testPathIgnorePatterns: ['<rootDir>[/\\\\](node_modules|.next)[/\\\\]'],
   transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(ts|tsx)$'],
+  coveragePathIgnorePatterns: ['/node_modules/', 'enzyme.js'],
   transform: {
     '^.+\\.(ts|tsx)$': 'babel-jest',
   },
