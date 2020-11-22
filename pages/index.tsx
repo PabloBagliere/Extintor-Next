@@ -1,15 +1,30 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import NavBar from 'component/NavBar';
+import LinksDTO from 'Utils/LinksDTO';
 
 export default function Home(): JSX.Element {
+  const Links: Array<LinksDTO> = [
+    {
+      href: '/',
+      text: 'Home',
+    },
+    {
+      href: '/extintores',
+      text: 'Extintores',
+    },
+    {
+      href: '/info',
+      text: 'Informacion',
+    },
+  ];
   return (
     <div className="bg-white">
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <NavBar />
+      <NavBar props={Links} />
       <main>
         <h1 className="text-gray-900">Hola mundo</h1>
         <Link href="/login">Login</Link>
