@@ -24,7 +24,7 @@ export default function Home(): JSX.Element {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <NavBar props={Links} />
+      <NavBar links={Links} />
       <main>
         <h1 className="text-gray-900">Hola mundo</h1>
         <Link href="/login">Login</Link>

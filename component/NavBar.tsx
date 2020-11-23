@@ -4,10 +4,10 @@ import Links from './Links';
 import LinksDTO from 'Utils/LinksDTO';
 
 interface Props {
-  props: LinksDTO[];
+  links: LinksDTO[];
 }
 
-export default function NavBar({ props }: Props): JSX.Element {
+export default function NavBar({ links }: Props): JSX.Element {
   function showHidden(): void {
     setHidden(!hidden);
   }
@@ -42,7 +42,7 @@ export default function NavBar({ props }: Props): JSX.Element {
         }
       >
         <div className="text-sm lg:flex-grow">
-          {props.map((element: { href: string; text: string }, i) => {
+          {links.map((element: { href: string; text: string }, i) => {
             return <Links href={element.href} text={element.text} key={i} />;
           })}
         </div>

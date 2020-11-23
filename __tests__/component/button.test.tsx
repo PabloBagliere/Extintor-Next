@@ -1,4 +1,5 @@
-import { fireEvent, screen, render } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
+import useEvent from '@testing-library/user-event';
 import Button from 'component/Button';
 import DTOButton from 'Utils/ButtonDTO';
 
@@ -34,7 +35,7 @@ describe('Test component button', function () {
         {mock.children}
       </Button>
     );
-    fireEvent.click(screen.getByText(mock.children.props.children));
+    useEvent.click(screen.getByText(mock.children.props.children));
     expect(mock.onClick).toHaveBeenCalledTimes(1);
   });
 
