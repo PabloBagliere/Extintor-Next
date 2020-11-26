@@ -1,14 +1,27 @@
 import Head from 'next/head';
-import Link from 'next/link';
-export default function Login() {
+import Auth from 'component/Auth';
+import useUser from 'hooks/useUser';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+
+export default function Login(): JSX.Element {
+  const user = useUser();
+  const router = useRouter();
+
+  useEffect(() => {
+    user && router.replace('/');
+  }, [router, user]);
   return (
-    <div>
+    <>
       <Head>
         <title>Login</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1 className="text-center">Login</h1>
-      <Link href="/">Home</Link>
-    </div>
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-md w-full space-y-8">
+          <Auth />
+        </div>
+      </div>
+    </>
   );
 }

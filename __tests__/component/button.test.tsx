@@ -1,23 +1,33 @@
 import { screen, render } from '@testing-library/react';
 import useEvent from '@testing-library/user-event';
 import Button from 'component/Button';
-import DTOButton from 'Utils/ButtonDTO';
+import { DTOButton, types } from 'Utils/ButtonDTO';
 
 const mock: DTOButton = {
-  children: <p>test</p>,
+  children: 'test',
   onClick: jest.fn(),
+  type: types.submit,
+  disable: true,
 };
 
 describe('Test component button', function () {
-  it('Check if it puts the children', () => {
+  it('Check if it puts the children | string', () => {
     const { container } = render(
       <Button className={mock.className} onClick={mock.onClick}>
         {mock.children}
       </Button>
     );
-    expect(container.firstChild?.textContent).toBe(
-      mock.children.props.children
+    expect(container.firstChild?.textContent).toBe(mock.children);
+  });
+
+  it('Check if it puts the children | Element', () => {
+    const element = <p>{mock.children}</p>;
+    const { container } = render(
+      <Button className={mock.className} onClick={mock.onClick}>
+        {element}
+      </Button>
     );
+    expect(container.firstChild?.textContent).toBe(mock.children);
   });
 
   it('should render without throwing an error | not class', () => {
@@ -26,7 +36,7 @@ describe('Test component button', function () {
         {mock.children}
       </Button>
     );
-    expect(screen.getByText(mock.children.props.children)).toBeVisible();
+    expect(screen.getByText(mock.children)).toBeVisible();
   });
 
   it('calls onClick prop when clicked', () => {
@@ -35,7 +45,7 @@ describe('Test component button', function () {
         {mock.children}
       </Button>
     );
-    useEvent.click(screen.getByText(mock.children.props.children));
+    useEvent.click(screen.getByText(mock.children));
     expect(mock.onClick).toHaveBeenCalledTimes(1);
   });
 
