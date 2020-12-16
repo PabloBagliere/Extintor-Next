@@ -1,10 +1,11 @@
-import { DTOButton, types } from 'Utils/ButtonDTO';
+import { DTOButton } from 'Utils/ButtonDTO';
+import { typesButton } from 'Utils/Data';
 
 export default function Button({
   className,
   onClick,
   children,
-  type = types.button,
+  type = typesButton.button,
   disable = false,
 }: DTOButton): JSX.Element {
   return (

@@ -1,14 +1,10 @@
 import { Field, Formik, Form } from 'formik';
 import { loginEmail } from 'firebase/client';
 import Button from './Button';
-import { types } from 'Utils/ButtonDTO';
+import Input from './Input';
+import { typesButton, typesInput } from 'Utils/Data';
 import SchemaValided from 'Utils/userValidate';
 import { useState } from 'react';
-
-const classes =
-  'appearance-none rounded-none relative block w-full px-3 py-2 mt-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm';
-const ClassError =
-  'appearance-none relative block sm:text-sm w-full w-full px-3 py-2 mt-3 border rounded-md rounded placeholder-gray-400 focus:border-indigo-400 focus:outline-none border-red-500';
 
 export default function Auth(): JSX.Element {
   const [error, setError] = useState(false);
@@ -37,7 +33,7 @@ export default function Auth(): JSX.Element {
           <Form className="mt-8 space-y-6">
             <div className="rounded-md -space-y-px">
               {error ? (
-                <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                <span className="font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
                   Error email o contraseña equivacoda, si sigue igual
                   comuniquese con el administrador
                 </span>
@@ -47,13 +43,13 @@ export default function Auth(): JSX.Element {
                 <Field
                   name="email"
                   placeholder="Email"
-                  type="email"
-                  className={
-                    errors.email && touched.email ? ClassError : classes
-                  }
+                  type={typesInput.email}
+                  component={Input}
+                  className="w-full rounded-md"
+                  error={errors.email && touched.email ? true : false}
                 />
                 {errors.email && touched.email ? (
-                  <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                  <span className="font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
                     {errors.email}
                   </span>
                 ) : null}
@@ -63,13 +59,13 @@ export default function Auth(): JSX.Element {
                 <Field
                   name="password"
                   placeholder="Contraseña"
-                  type="password"
-                  className={
-                    errors.password && touched.password ? ClassError : classes
-                  }
+                  type={typesInput.password}
+                  component={Input}
+                  className="w-full rounded-md"
+                  error={errors.password && touched.password ? true : false}
                 />
                 {errors.password && touched.password ? (
-                  <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                  <span className="font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
                     {errors.password}
                   </span>
                 ) : null}
@@ -86,7 +82,7 @@ export default function Auth(): JSX.Element {
               </div>
             </div>
             <Button
-              type={types.submit}
+              type={typesButton.submit}
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               disable={isSubmitting}
             >

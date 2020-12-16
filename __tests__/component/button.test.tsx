@@ -1,12 +1,13 @@
 import { screen, render } from '@testing-library/react';
 import useEvent from '@testing-library/user-event';
 import Button from 'component/Button';
-import { DTOButton, types } from 'Utils/ButtonDTO';
+import { DTOButton } from 'Utils/ButtonDTO';
+import { typesButton } from 'Utils/Data';
 
 const mock: DTOButton = {
   children: 'test',
   onClick: jest.fn(),
-  type: types.submit,
+  type: typesButton.submit,
   disable: true,
 };
 

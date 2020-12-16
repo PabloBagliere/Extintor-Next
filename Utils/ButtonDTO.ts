@@ -1,14 +1,10 @@
 import { MouseEventHandler } from 'react';
+import { typesButton } from './Data';
 
-export enum types {
-  button = 'button',
-  submit = 'submit',
-  reset = 'reset',
-}
 export interface DTOButton {
   className?: string;
   onClick?: MouseEventHandler;
-  type?: types;
+  type?: typesButton;
   disable?: boolean;
   children: (JSX.Element | string)[] | JSX.Element | string;
 }

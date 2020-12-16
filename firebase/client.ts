@@ -16,7 +16,7 @@ const firebaseConfig = {
 !firebase.apps.length && firebase.initializeApp(firebaseConfig);
 
 export function onAuthStateChanged(
-  onChange: Dispatch<SetStateAction<null | firebase.User>>
+  onChange: Dispatch<SetStateAction<undefined | null | firebase.User>>
 ): firebase.Unsubscribe {
   return firebase.auth().onAuthStateChanged((user) => {
     return onChange(user);
