@@ -4,9 +4,10 @@ import { DTOInput } from 'Utils/InputDTO';
 export default function Input({
   className = '',
   children,
+  name,
   type = typesInput.text,
   error = false,
-  field,
+  inputRef,
   placeholder,
 }: DTOInput): JSX.Element {
   let classDefault =
@@ -19,19 +20,21 @@ export default function Input({
   }
   return error ? (
     <input
+      name={name}
       className={classError}
       placeholder={placeholder}
       type={type}
-      {...field}
+      ref={inputRef}
     >
       {children}
     </input>
   ) : (
     <input
+      name={name}
       className={classDefault}
       placeholder={placeholder}
       type={type}
-      {...field}
+      ref={inputRef}
     >
       {children}
     </input>

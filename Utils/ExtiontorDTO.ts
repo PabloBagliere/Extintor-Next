@@ -9,7 +9,7 @@ export default interface ExtintorDTO {
   obvervarion?: string;
   ubication: string;
   type: string;
-  photo: string;
+  photo: File | undefined;
   isService: boolean;
   createDate?: Date;
   updateDate?: Date;

@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/storage';
 import { Dispatch, SetStateAction } from 'react';
 
 const firebaseConfig = {
@@ -33,4 +34,10 @@ export function loginEmail(
   password: string
 ): Promise<firebase.auth.UserCredential> {
   return firebase.auth().signInWithEmailAndPassword(email, password);
+}
+
+export function uploadImage(file: File): firebase.storage.UploadTask {
+  const ref = firebase.storage().ref(`image/${file.name}`);
+  const task = ref.put(file);
+  return task;
 }

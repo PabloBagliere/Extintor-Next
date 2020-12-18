@@ -1,10 +1,12 @@
-import { DTOSelect } from 'Utils/SelectDTO';
+import { DTOBasicForm } from 'Utils/BasicInputForm';
 
 export default function Select({
   children,
   className = '',
   error,
-}: DTOSelect): JSX.Element {
+  inputRef,
+  name,
+}: DTOBasicForm): JSX.Element {
   let classDefault =
     'bg-white block p-0.5 border border-gray-300 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm | ';
   let classError =
@@ -14,8 +16,12 @@ export default function Select({
     classError += className;
   }
   return error ? (
-    <select className={classError}>{children}</select>
+    <select name={name} ref={inputRef} className={classError}>
+      {children}
+    </select>
   ) : (
-    <select className={classDefault}>{children}</select>
+    <select name={name} ref={inputRef} className={classDefault}>
+      {children}
+    </select>
   );
 }
