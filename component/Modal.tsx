@@ -1,6 +1,6 @@
 import { MouseEventHandler } from 'react';
 import Button from './Button';
-import Extintor from './NewExtintores';
+import Extintor from './NewExtinguisher';
 
 interface props {
   setHidden: MouseEventHandler;

@@ -1,22 +1,29 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Input from './Input';
 import Button from './Button';
 import Select from './Select';
 import { dataClass, dataTypes, typesButton, typesInput } from 'Utils/Data';
-import ExtintorDTO from 'Utils/ExtiontorDTO';
+import DTOExtinguisher from 'Utils/ExtinguisherDTO';
 import SchemaValided from 'Utils/extinguisherValidate';
-import { useState } from 'react';
+import { createExtinguisher } from 'firebase/client';
 
 export default function Extintor(): JSX.Element {
   const [loading, setLoading] = useState(false);
-  const { errors, handleSubmit, register } = useForm<ExtintorDTO>({
+  const {
+    formState: { errors },
+    handleSubmit,
+    register,
+  } = useForm<DTOExtinguisher>({
     resolver: yupResolver(SchemaValided),
   });
-  const onSubmit = (values: ExtintorDTO): void => {
+  const onSubmit = (values: DTOExtinguisher): void => {
     setLoading(!loading);
+    values.photo = values.photo[0];
     console.log(values);
+    createExtinguisher(values);
     setLoading(!loading);
   };
   return (

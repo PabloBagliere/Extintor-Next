@@ -2,6 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/storage';
 import { Dispatch, SetStateAction } from 'react';
+import DTOExtinguisher from 'Utils/ExtinguisherDTO';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBm23mw0VqscNF6xPRHwE4GABxynoi9Mcw',
@@ -29,6 +30,26 @@ export function signOut(): Promise<void> {
   return firebase.auth().signOut();
 }
 
+export function createExtinguisher(data: DTOExtinguisher): void {
+  if (typeof data.photo == 'string') return;
+  const updatePhoto = (value: string | File): void => {
+    data.photo = value;
+  };
+  const functionComplet = (): void => {
+    task.snapshot.ref.getDownloadURL().then(updatePhoto);
+    console.log('isComplet');
+  };
+  const task = uploadImage(data.photo);
+  task.on(
+    'state_changed',
+    null,
+    (error) => {
+      console.log(error);
+    },
+    functionComplet
+  );
+}
+
 export function loginEmail(
   email: string,
   password: string
@@ -36,7 +57,7 @@ export function loginEmail(
   return firebase.auth().signInWithEmailAndPassword(email, password);
 }
 
-export function uploadImage(file: File): firebase.storage.UploadTask {
+function uploadImage(file: File): firebase.storage.UploadTask {
   const ref = firebase.storage().ref(`image/${file.name}`);
   const task = ref.put(file);
   return task;
